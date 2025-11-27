@@ -1,0 +1,357 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Papai Rafa Noel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        background: linear-gradient(120deg, #8b0000, #b30000, #d40000);
+        font-family: "Fredoka", sans-serif;
+        text-align: center;
+        color: white;
+        overflow-x: hidden;
+    }
+
+    /* ✨ Fundo com glitter */
+    body::before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0; left: 0;
+        background-image: url("https://i.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif");
+        background-size: cover;
+        opacity: 0.30;
+        pointer-events: none;
+    }
+
+    h1 {
+        font-size: 50px;
+        margin-top: 40px;
+        text-shadow: 0 0 25px #fff, 0 0 60px yellow;
+    }
+
+    .container {
+        margin-top: 35px;
+        background: rgba(255,255,255,0.12);
+        padding: 25px;
+        width: 60%;
+        border-radius: 20px;
+        border: 3px solid gold;
+        box-shadow: 0 0 30px gold;
+        margin-left: auto;
+        margin-right: auto;
+        backdrop-filter: blur(8px);
+    }
+
+    img {
+        width: 180px;
+        border-radius: 100%;
+        border: 4px solid white;
+        box-shadow: 0 0 25px white;
+    }
+
+    .text {
+        font-size: 26px;
+        font-weight: bold;
+        margin: 25px 0;
+        text-shadow: 0 0 15px gold;
+    }
+
+    button {
+        font-size: 22px;
+        padding: 18px 35px;
+        border-radius: 15px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #sim {
+        background: #00ff88;
+        box-shadow: 0 0 25px #00ff88;
+    }
+
+    #nao {
+        background: #ff0000;
+        box-shadow: 0 0 25px red;
+        position: absolute;
+        transition: 0.10s;
+    }
+
+    /* ❄️ Neve caindo */
+    .snow {
+      position: fixed;
+      top: -10px;
+      background: white;
+      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      opacity: 0.9;
+      animation: falling linear infinite;
+    }
+
+    @keyframes falling {
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+
+    /* 🌟 Luzes piscando */
+    .light {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        position: fixed;
+        animation: blink 1s infinite alternate;
+        box-shadow: 0 0 10px white;
+    }
+
+    @keyframes blink {
+        0% { opacity: 0.2; transform: scale(0.8); }
+        100% { opacity: 1; transform: scale(1.3); }
+    }
+
+    /* 🎄 Frase da esquerda */
+    .frase-esquerda {
+        position: fixed;
+        left: 10px;
+        bottom: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        text-shadow: 0 0 10px gold;
+    }
+
+    /* 🎄 Tecla no canto direito */
+    .Tecla {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        width: 140px;
+        animation: Tecla 4s infinite ease-in-out;
+    }
+
+    @keyframes Tecla {
+        0% { transform: translateY(0) rotate(0); }
+        50% { transform: translateY(-12px) rotate(4deg); }
+        100% { transform: translateY(0) rotate(0); }
+    }
+
+    /* 📱 ALERTA PERSONALIZADO */
+    .alert-bg {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.65);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s ease;
+    }
+
+    .alert-box {
+        background: white;
+        width: 330px;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow: 0 0 25px gold;
+        text-align: center;
+        transform: scale(0.4);
+        transition: 0.3s ease;
+        opacity: 0;
+    }
+
+    .alert-box.show {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .alert-bg.show {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .alert-phone {
+        font-size: 75px;
+        animation: bounce 0.8s infinite;
+    }
+
+    @keyframes bounce {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-18px) rotate(8deg); }
+        100% { transform: translateY(0); }
+    }
+
+    .alert-btn {
+        background: #ff4747;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 10px;
+        margin-top: 18px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 0 15px red;
+    }
+
+    /* 📱 RESPONSIVIDADE */
+    @media (max-width: 768px) {
+        .grinch { width: 90px; }
+        .frase-esquerda { font-size: 18px; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="frase-esquerda">
+    Eu fui uma boa menina durante o ano todo 😭✨
+</div>
+
+<img class="Tecla" src="Tecla.png">
+
+<script>
+for (let i = 0; i < 10; i++) {
+    let l = document.createElement("div");
+    l.classList.add("light");
+    l.style.left = (5 + Math.random()*40) + "px";
+    l.style.top = (10 + i*40) + "px";
+    l.style.background = i % 2 ? "red" : "lime";
+    document.body.appendChild(l);
+}
+for (let i = 0; i < 10; i++) {
+    let l = document.createElement("div");
+    l.classList.add("light");
+    l.style.right = (5 + Math.random()*40) + "px";
+    l.style.top = (10 + i*40) + "px";
+    l.style.background = i % 2 ? "red" : "lime";
+    document.body.appendChild(l);
+}
+</script>
+
+<audio id="musica" src="musica.mpeg" loop></audio>
+
+<h1>🎅✨ PAPAI RAFA NOEL ✨🎄</h1>
+
+<div class="container">
+    <img src="rafa.png" alt="Rafa Noel">
+    <p class="text">EU MEREÇO MUITO GANHAR ESSE PRESENTE <br> EU PRECISO MUITO DE UM CELULAR NOVO. 📱🎁</p>
+
+    <h2>Você concorda comigo? 👀</h2><br>
+
+    <button id="sim">SIM, ELA MERECE MUITO!! 🤩</button>
+    <button id="nao">NÃO</button>
+</div>
+
+<div class="alert-bg" id="alertBg">
+    <div class="alert-box" id="alertBox">
+        <div class="alert-phone">📱</div>
+        <h2 style="color:#b30000; margin-top:15px;">ME DÁ ESSE CELULAR<br> AGORA!! 🔥🎅</h2>
+        <button class="alert-btn" onclick="fecharAlerta()">Fechar</button>
+    </div>
+</div>
+
+<script>
+/* CONFETES */
+function estourarConfetes() {
+    for (let i = 0; i < 120; i++) {
+        let conf = document.createElement("div");
+        conf.style.position = "fixed";
+        conf.style.left = Math.random() * 100 + "vw";
+        conf.style.top = Math.random() * 100 + "vh";
+        conf.style.width = conf.style.height = "10px";
+        conf.style.background = "hsl(" + Math.random()*360 + ",100%,50%)";
+        conf.style.borderRadius = "50%";
+        conf.style.animation = "cair 1.8s linear forwards";
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 1800);
+    }
+}
+
+document.getElementById("sim").onclick = () => {
+    estourarConfetes();
+    setTimeout(() => {
+        abrirAlerta();
+    }, 700);
+}
+
+/* ALERTA */
+function abrirAlerta() {
+    const bg = document.getElementById("alertBg");
+    const box = document.getElementById("alertBox");
+    bg.classList.add("show");
+    setTimeout(() => box.classList.add("show"), 50);
+}
+
+function fecharAlerta() {
+    const bg = document.getElementById("alertBg");
+    const box = document.getElementById("alertBox");
+    box.classList.remove("show");
+    setTimeout(() => bg.classList.remove("show"), 300);
+}
+
+/* NEVE */
+function criarNeve() {
+    let floco = document.createElement("div");
+    floco.className = "snow";
+    floco.style.left = Math.random() * window.innerWidth + "px";
+    floco.style.animationDuration = 3 + Math.random() * 5 + "s";
+    document.body.appendChild(floco);
+    setTimeout(() => floco.remove(), 8000);
+}
+setInterval(criarNeve, 80);
+
+/* BOTÃO NÃO */
+const nao = document.getElementById("nao");
+const margemTela = 120;
+
+function reposicionarNao(){
+    let maxX = window.innerWidth  - nao.offsetWidth  - margemTela;
+    let maxY = window.innerHeight - nao.offsetHeight - margemTela;
+
+    if(maxX < margemTela) maxX = margemTela; 
+    if(maxY < margemTela) maxY = margemTela; 
+
+    let x = Math.random() * (maxX - margemTela) + margemTela;
+    let y = Math.random() * (maxY - margemTela) + margemTela;
+
+    nao.style.left = x + "px";
+    nao.style.top  = y + "px";
+}
+
+// 🐭 Ativa a fuga ao passar o mouse (PC/Desktop e celular)
+nao.onmouseover = () => {
+    reposicionarNao();
+}
+
+// 📱 Ativa a fuga ao tocar (Celular/Tablet)
+nao.ontouchstart = () => {
+    reposicionarNao();
+}
+
+// Garante que o botão volte para a tela caso saia (Importante para ambos)
+setInterval(()=>{
+    let rect = nao.getBoundingClientRect();
+    if(rect.x < 0 || rect.y < 0 || rect.x > window.innerWidth || rect.y > window.innerHeight){
+        reposicionarNao();
+    }
+},300);
+
+/* MUSICA */
+document.addEventListener("click", () => {
+    const musica = document.getElementById("musica");
+    musica.muted = false;
+    musica.volume = 1.0;
+    musica.play().catch(()=>{});
+}, { once: true });
+
+</script>
+
+</body>
+</html>
